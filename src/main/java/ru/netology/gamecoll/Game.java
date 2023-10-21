@@ -2,15 +2,15 @@ package ru.netology.gamecoll;
 
 import ru.netology.gamecoll.exception.NotRegisteredException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
-    private List<Player> players = new ArrayList<>();
+    private Map<String, Player> players = new HashMap<>();
 
     public void register(Player player) {
         if (player != null) {
-            players.add(player);
+            players.put(player.getName(), player);
         }
     }
 
@@ -27,19 +27,10 @@ public class Game {
     }
 
     private Player findPlayerByName(String playerName) {
-        Player found = null;
-        if (playerName != null) {
-            for (Player player : players) {
-                if (playerName.equals(player.getName())) {
-                    found = player;
-                    break;
-                }
-            }
-        }
-        return found;
+        return players.get(playerName);
     }
 
-    public List<Player> getPlayers() {
+    public Map<String, Player> getPlayers() {
         return players;
     }
 }
