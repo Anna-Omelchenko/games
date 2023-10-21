@@ -4,19 +4,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.gamecoll.exception.NotRegisteredException;
 
-import java.util.List;
+import java.util.Map;
 
 public class GameTest {
 
     @Test
     public void testRegister() {
-        Player player1 = new Player(101, "Alex Brown", 100500);
+        String playerName = "Alex Brown";
+        Player player1 = new Player(101, playerName, 100500);
         Game game = new Game();
         game.register(player1);
-        List<Player> playersFromGame = game.getPlayers();
+        Map<String, Player> playersFromGame = game.getPlayers();
         Assertions.assertNotNull(playersFromGame);
         Assertions.assertEquals(1, playersFromGame.size());
-        Assertions.assertEquals(player1.getId(), playersFromGame.get(0).getId());
+        Assertions.assertEquals(player1.getId(), playersFromGame.get(playerName).getId());
         // Test adding null player
         game.register(null);
         Assertions.assertEquals(1, playersFromGame.size());
